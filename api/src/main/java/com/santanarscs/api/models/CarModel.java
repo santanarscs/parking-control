@@ -4,9 +4,12 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +32,10 @@ public class CarModel {
 
   @Column(nullable = false)
   private String color;
+
+  @ManyToOne
+  @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "CAR_CLIENT_FK"))
+  private ClientModel client;
 
   public UUID getId() {
     return id;
@@ -68,6 +75,14 @@ public class CarModel {
 
   public void setColor(String color) {
     this.color = color;
+  }
+    
+  public ClientModel getClient() {
+    return client;
+  }
+
+  public void setClient(ClientModel client) {
+    this.client = client;
   }
 
 }
