@@ -34,7 +34,7 @@ public class CarModel {
   private String color;
 
   @ManyToOne
-  @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "CAR_CLIENT_FK"))
+  @JoinColumn(name = "client_id")
   private ClientModel client;
 
   public UUID getId() {

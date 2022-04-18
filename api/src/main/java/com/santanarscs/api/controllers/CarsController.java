@@ -7,7 +7,9 @@ import javax.validation.Valid;
 
 import com.santanarscs.api.dtos.CarDto;
 import com.santanarscs.api.models.CarModel;
+import com.santanarscs.api.models.ClientModel;
 import com.santanarscs.api.service.CarsService;
+import com.santanarscs.api.service.ClientsService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -33,11 +35,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class CarsController {
 
   final CarsService carsService;
+  final ClientsService clientsService;
 
   static final String NOT_FOUND_MESSAGE = "Car not found";
 
-  public CarsController(CarsService carsService) {
+  public CarsController(CarsService carsService, ClientsService clientsService) {
     this.carsService = carsService;
+    this.clientsService = clientsService;
   }
 
 
@@ -45,6 +49,8 @@ public class CarsController {
   public ResponseEntity<Object> save(@RequestBody @Valid CarDto carDto) {
     var carModel = new CarModel();
     BeanUtils.copyProperties(carDto, carModel);
+    Optional<ClientModel> clientModel = clientsService.findById(carDto.getClientId());
+    carModel.setClient(clientModel.get());
     return ResponseEntity.status(HttpStatus.CREATED).body(carsService.save(carModel));
   }
 

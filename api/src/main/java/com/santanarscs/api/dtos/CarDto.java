@@ -1,5 +1,7 @@
 package com.santanarscs.api.dtos;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -17,6 +19,9 @@ public class CarDto {
 
   @NotBlank
   private String color;
+
+  // @NotBlank
+  private UUID clientId;
 
   public String getLicensePlate() {
     return licensePlate;
@@ -49,5 +54,14 @@ public class CarDto {
   public void setColor(String color) {
     this.color = color;
   }
+
+  public UUID getClientId() {
+    return clientId;
+  }
+
+  public void setClientId(UUID clientId) {
+    this.clientId = clientId;
+  }
+  
   
 }
