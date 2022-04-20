@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .custom-table {
+    @apply bg-white w-full table-auto divide-y-2 divide-gray-200 text-gray-800;
+    th {
+      @apply px-6 py-3 text-left text-gray-600 uppercase tracking-widest;
+    }
+    tbody {
+      @apply divide-y divide-gray-200;
+    }
+    td {
+      @apply px-6 py-3
+    }
+  }
+  .container {
+    @apply max-w-7xl mx-auto py-6 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-block px-4 py-2 rounded-sm focus:outline-none focus:ring
+    focus:ring-offset-2 uppercase tracking-wider font-semibold text-sm
+    sm:text-base;
+  }
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-500 active:bg-blue-700 focus:ring-blue-500 focus:ring-opacity-50 text-white;
+  }
+}
