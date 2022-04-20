@@ -1,9 +1,6 @@
 package com.santanarscs.api.dtos;
 
-import java.util.UUID;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -15,22 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CarDto {
-  
+public class SpotDto {
   @NotBlank
-  @Size(max = 7)
-  private String licensePlate;
-
-  @NotBlank
-  private String brand;
-
-  @NotBlank
-  private String model;
-
-  @NotBlank
-  private String color;
-
-  @NotNull
-  private UUID clientId;
-
+  @Size(max = 7)  
+  private String code;
 }

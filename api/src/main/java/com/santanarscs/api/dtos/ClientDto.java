@@ -3,6 +3,15 @@ package com.santanarscs.api.dtos;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ClientDto {
 
   @NotBlank  
@@ -12,18 +21,7 @@ public class ClientDto {
   @Size(max =11)
   private String document;
   
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
-  public String getDocument() {
-    return document;
-  }
-  public void setDocument(String document) {
-    this.document = document;
-  }
+
 
   
 }
