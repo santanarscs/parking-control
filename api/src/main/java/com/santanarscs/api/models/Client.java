@@ -1,5 +1,6 @@
 package com.santanarscs.api.models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -9,10 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name ="TB_CLIENT")
-public class ClientModel {
+public class Client implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
@@ -24,30 +32,5 @@ public class ClientModel {
 
   @Column(nullable = false, unique = true, length = 11)
   private String document;
-
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getDocument() {
-    return document;
-  }
-
-  public void setDocument(String document) {
-    this.document = document;
-  }
   
 }
