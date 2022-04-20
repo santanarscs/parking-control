@@ -14,13 +14,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -37,6 +40,7 @@ public class CarController {
   }
 
   @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
   public Car save(@RequestBody @Valid CarDto carDto) throws NameNotFoundException{
     return carService.save(carDto);
   }
@@ -47,8 +51,8 @@ public class CarController {
   }
 
   @GetMapping("/{id}")
-  public Optional<Car> getOne(@PathVariable(value = "id") UUID id) {
-    return carService.findById(id);
+  public Car getOne(@PathVariable(value = "id") UUID id) {
+    return carService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   @PutMapping("/{id}")
@@ -57,6 +61,7 @@ public class CarController {
   }
 
   @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable(value = "id") UUID id) throws NameNotFoundException  {
     carService.delete(id);
   }

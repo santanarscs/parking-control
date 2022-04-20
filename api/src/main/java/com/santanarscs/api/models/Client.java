@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Client implements Serializable {
   private UUID id;
 
   @Column(nullable = false)
+  @NotBlank(message = "{field.name.required}")
   private String name;
 
   @Column(nullable = false, unique = true, length = 11)
